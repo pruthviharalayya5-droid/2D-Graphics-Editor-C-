@@ -5,7 +5,20 @@
 #define COLS 40
 
 char canvas[ROWS][COLS];
+typedef struct
+{
+    int id;
+    int type;
+    int row;
+    int col;
+    int height;
+    int width;
+    int radius;
+    int active;
+} Shape;
 
+Shape shapes[100];
+int shapeCount = 0;
 void initializeCanvas()
 {
     for(int i=0;i<ROWS;i++)
@@ -77,6 +90,28 @@ void drawCircle(int xc,int yc,int r)
         }
     }
 }
+void redrawAll()
+{
+    initializeCanvas();
+
+    for(int i=0;i<shapeCount;i++)
+    {
+        if(shapes[i].active)
+        {
+            if(shapes[i].type == 1)
+                drawRectangle(shapes[i].row, shapes[i].col, shapes[i].height, shapes[i].width);
+
+            else if(shapes[i].type == 2)
+                drawLine(shapes[i].row, shapes[i].col, shapes[i].width);
+
+            else if(shapes[i].type == 3)
+                drawTriangle(shapes[i].row, shapes[i].col, shapes[i].height);
+
+            else if(shapes[i].type == 4)
+                drawCircle(shapes[i].row, shapes[i].col, shapes[i].radius);
+        }
+    }
+}
 int main()
 {
     int choice;
@@ -86,12 +121,14 @@ int main()
     while(1)
     {
         printf("\n===== 2D GRAPHICS EDITOR =====\n");
-        printf("1. Draw Rectangle\n");
-        printf("2. Draw Line\n");
-        printf("3. Draw Triangle\n");
-        printf("4. Draw Circle\n");
-        printf("5. Display Canvas\n");
-        printf("6. Exit\n");
+        printf("1. Add Rectangle\n");
+        printf("2. Add Line\n");
+        printf("3. Add Triangle\n");
+        printf("4. Add Circle\n");
+        printf("5. Delete Object\n");
+        printf("6. Modify Object\n");
+        printf("7. Display Canvas\n");
+        printf("8. Exit\n");
 
         printf("Enter choice: ");
         scanf("%d",&choice);
@@ -99,26 +136,138 @@ int main()
         switch(choice)
         {
             case 1:
-                drawRectangle(2,5,6,10);
+            {
+                Shape s;
+                s.id = shapeCount;
+                s.type = 1;
+                s.active = 1;
+
+                printf("Enter row: ");
+                scanf("%d",&s.row);
+
+                printf("Enter column: ");
+                scanf("%d",&s.col);
+
+                printf("Enter height: ");
+                scanf("%d",&s.height);
+
+                printf("Enter width: ");
+                scanf("%d",&s.width);
+
+                shapes[shapeCount] = s;
+                shapeCount++;
+
+                redrawAll();
+
+                printf("Rectangle added with ID %d\n", s.id);
                 break;
+            }
 
             case 2:
-                drawLine(12,5,25);
-                break;
+{
+    Shape s;
+    s.id = shapeCount;
+    s.type = 2;
+    s.active = 1;
 
-            case 3:
-                drawTriangle(5,30,5);
-                break;
+    printf("Enter row: ");
+    scanf("%d",&s.row);
 
-            case 4:
-                drawCircle(14,30,4);
-                break;
+    printf("Enter start column: ");
+    scanf("%d",&s.col);
+
+    printf("Enter end column: ");
+    scanf("%d",&s.width);
+
+    shapes[shapeCount] = s;
+    shapeCount++;
+
+    redrawAll();
+
+    printf("Line added with ID %d\n", s.id);
+    break;
+}
+
+           case 3:
+{
+    Shape s;
+    s.id = shapeCount;
+    s.type = 3;
+    s.active = 1;
+
+    printf("Enter row: ");
+    scanf("%d",&s.row);
+
+    printf("Enter column: ");
+    scanf("%d",&s.col);
+
+    printf("Enter size: ");
+    scanf("%d",&s.height);
+
+    shapes[shapeCount] = s;
+    shapeCount++;
+
+    redrawAll();
+
+    printf("Triangle added with ID %d\n", s.id);
+    break;
+}
+
+          case 4:
+{
+    Shape s;
+    s.id = shapeCount;
+    s.type = 4;
+    s.active = 1;
+
+    printf("Enter center row: ");
+    scanf("%d",&s.row);
+
+    printf("Enter center column: ");
+    scanf("%d",&s.col);
+
+    printf("Enter radius: ");
+    scanf("%d",&s.radius);
+
+    shapes[shapeCount] = s;
+    shapeCount++;
+
+    redrawAll();
+
+    printf("Circle added with ID %d\n", s.id);
+    break;
+}
 
             case 5:
+{
+    int id;
+
+    printf("Enter object ID to delete: ");
+    scanf("%d",&id);
+
+    if(id >= 0 && id < shapeCount)
+    {
+        shapes[id].active = 0;
+        redrawAll();
+        printf("Object deleted successfully\n");
+    }
+    else
+    {
+        printf("Invalid object ID\n");
+    }
+
+    break;
+}
+
+            case 6:
+                printf("Modify option will be added next.\n");
+                break;
+
+            case 7:
                 displayCanvas();
                 break;
 
-            case 6:
+            case 8:
                 return 0;
 
             default:
