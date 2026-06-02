@@ -41,12 +41,19 @@ void drawRectangle(int row,int col,int height,int width)
         canvas[i][col+width-1]='*';
     }
 }
-
+void drawLine(int row,int startCol,int endCol)
+{
+    for(int i=startCol;i<=endCol;i++)
+    {
+        canvas[row][i] = '*';
+    }
+}
 int main()
 {
     initializeCanvas();
 
     drawRectangle(2,5,6,10);
+    drawLine(12,5,25);
 
     displayCanvas();
 
