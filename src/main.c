@@ -259,10 +259,56 @@ int main()
     break;
 }
 
-            case 6:
-                printf("Modify option will be added next.\n");
-                break;
+          case 6:
+{
+    int id;
 
+    printf("Enter object ID to modify: ");
+    scanf("%d",&id);
+
+    if(id >= 0 && id < shapeCount && shapes[id].active)
+    {
+        printf("Enter new row: ");
+        scanf("%d",&shapes[id].row);
+
+        printf("Enter new column: ");
+        scanf("%d",&shapes[id].col);
+
+        if(shapes[id].type == 1)
+        {
+            printf("Enter new height: ");
+            scanf("%d",&shapes[id].height);
+
+            printf("Enter new width: ");
+            scanf("%d",&shapes[id].width);
+        }
+        else if(shapes[id].type == 2)
+        {
+            printf("Enter new end column: ");
+            scanf("%d",&shapes[id].width);
+        }
+        else if(shapes[id].type == 3)
+        {
+            printf("Enter new size: ");
+            scanf("%d",&shapes[id].height);
+        }
+        else if(shapes[id].type == 4)
+        {
+            printf("Enter new radius: ");
+            scanf("%d",&shapes[id].radius);
+        }
+
+        redrawAll();
+
+        printf("Object modified successfully\n");
+    }
+    else
+    {
+        printf("Invalid object ID\n");
+    }
+
+    break;
+}
             case 7:
                 displayCanvas();
                 break;
