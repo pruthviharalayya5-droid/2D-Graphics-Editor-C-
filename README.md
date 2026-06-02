@@ -1,5 +1,4 @@
 # 2D-Graphics-Editor-C-
-# 2D Graphics Editor in C
 
 ## Description
 
