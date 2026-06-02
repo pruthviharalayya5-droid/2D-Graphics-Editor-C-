@@ -238,14 +238,14 @@ int main()
     break;
 }
 
-            case 5:
+     case 5:
 {
     int id;
 
     printf("Enter object ID to delete: ");
     scanf("%d",&id);
 
-    if(id >= 0 && id < shapeCount)
+    if(id >= 0 && id < shapeCount && shapes[id].active)
     {
         shapes[id].active = 0;
         redrawAll();
