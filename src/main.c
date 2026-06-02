@@ -79,14 +79,50 @@ void drawCircle(int xc,int yc,int r)
 }
 int main()
 {
+    int choice;
+
     initializeCanvas();
 
-    drawRectangle(2,5,6,10);
-    drawLine(12,5,25);
-    drawTriangle(5,30,5);
-    drawCircle(14,30,4);
+    while(1)
+    {
+        printf("\n===== 2D GRAPHICS EDITOR =====\n");
+        printf("1. Draw Rectangle\n");
+        printf("2. Draw Line\n");
+        printf("3. Draw Triangle\n");
+        printf("4. Draw Circle\n");
+        printf("5. Display Canvas\n");
+        printf("6. Exit\n");
 
-    displayCanvas();
+        printf("Enter choice: ");
+        scanf("%d",&choice);
 
-    return 0;
+        switch(choice)
+        {
+            case 1:
+                drawRectangle(2,5,6,10);
+                break;
+
+            case 2:
+                drawLine(12,5,25);
+                break;
+
+            case 3:
+                drawTriangle(5,30,5);
+                break;
+
+            case 4:
+                drawCircle(14,30,4);
+                break;
+
+            case 5:
+                displayCanvas();
+                break;
+
+            case 6:
+                return 0;
+
+            default:
+                printf("Invalid choice\n");
+        }
+    }
 }
