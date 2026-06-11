@@ -1,0 +1,239 @@
+PROJECT PROMPT FILE
+Project Title: 2D Graphics Editor Using C
+
+Student Name: Prithvi
+Project Type: C Programming Mini Project
+Development Tool: Visual Studio Code
+Version Control: Git and GitHub
+
+------------------------------------------------------------
+1. PROJECT DESCRIPTION
+------------------------------------------------------------
+
+The aim of this project is to create a simple 2D Graphics Editor using the C programming language.
+
+The program uses a two-dimensional character array as a canvas. The canvas has a fixed width and height. Empty spaces are represented using the character '_' and drawn pixels are represented using the character '*'.
+
+The user can perform basic drawing operations such as:
+1. Clearing the canvas
+2. Displaying the canvas
+3. Setting a pixel
+4. Drawing a line
+5. Drawing a rectangle
+6. Drawing a circle
+7. Saving or displaying the final picture, depending on project requirements
+
+This project helps in understanding:
+- 2D arrays
+- Functions in C
+- Loops
+- Conditional statements
+- Coordinate systems
+- Basic computer graphics logic
+- Modular programming
+
+------------------------------------------------------------
+2. ORIGINAL REQUIREMENT
+------------------------------------------------------------
+
+The project was given with incomplete function bodies marked as TODO.
+
+The main functions that needed to be completed were:
+
+1. clearPicture()
+   - Fill the entire 2D array with EMPTY character '_'.
+
+2. displayPicture()
+   - Print the 2D picture array row by row.
+
+3. setPixel(int x, int y)
+   - Check whether x and y are inside the canvas.
+   - If valid, place PIXEL character '*' at picture[y][x].
+
+4. drawLine(int x1, int y1, int x2, int y2)
+   - Draw a line between two points using a line drawing algorithm.
+
+5. drawRectangle(int x, int y, int width, int height)
+   - Draw the boundary of a rectangle.
+
+6. drawCircle(int centerX, int centerY, int radius)
+   - Draw an approximate circle using coordinate calculations.
+
+------------------------------------------------------------
+3. IMPORTANT CORRECTIONS MADE
+------------------------------------------------------------
+
+The following corrections were required while completing the project:
+
+1. Array Indexing Correction
+   In a 2D array, the first index represents the row and the second index represents the column.
+   Therefore, the correct format is:
+   picture[y][x]
+
+   Wrong:
+   picture[x][y]
+
+   Correct:
+   picture[y][x]
+
+2. Boundary Checking
+   Before setting a pixel, the program must check whether the coordinates are inside the canvas.
+
+   Correct condition:
+   x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT
+
+   This prevents array out-of-bounds errors.
+
+3. Canvas Clearing
+   The clearPicture() function must use nested loops to fill every position of the canvas with '_'.
+
+4. Canvas Display
+   The displayPicture() function must print every character of the canvas and move to a new line after each row.
+
+5. Modular Code
+   Each drawing task should be written in a separate function instead of writing all logic inside main().
+
+6. Proper Use of Constants
+   WIDTH, HEIGHT, EMPTY, and PIXEL should be defined using #define so that changes can be made easily.
+
+7. Line Drawing Logic
+   The drawLine() function should correctly handle:
+   - Horizontal lines
+   - Vertical lines
+   - Diagonal lines
+   - Slanted lines
+
+8. Rectangle Drawing Logic
+   Only the boundary of the rectangle should be drawn unless filled rectangle is specifically required.
+
+9. Circle Drawing Logic
+   The circle should be drawn approximately using the equation:
+   (x - centerX)^2 + (y - centerY)^2 = radius^2
+
+------------------------------------------------------------
+4. FINAL PROJECT LOGIC
+------------------------------------------------------------
+
+The program works in the following order:
+
+1. Create a 2D canvas using a character array.
+2. Initialize the canvas with empty characters.
+3. Use drawing functions to place pixels on the canvas.
+4. Display the canvas after drawing.
+5. Allow the user to choose drawing options if menu-driven implementation is used.
+6. Save, display, or modify the drawing as required.
+
+------------------------------------------------------------
+5. SAMPLE FINAL CODE STRUCTURE
+------------------------------------------------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define WIDTH 80
+#define HEIGHT 24
+
+#define EMPTY '_'
+#define PIXEL '*'
+
+char picture[HEIGHT][WIDTH];
+
+void clearPicture();
+void displayPicture();
+void setPixel(int x, int y);
+void drawLine(int x1, int y1, int x2, int y2);
+void drawRectangle(int x, int y, int width, int height);
+void drawCircle(int centerX, int centerY, int radius);
+
+int main() {
+    clearPicture();
+
+    drawLine(2, 2, 30, 10);
+    drawRectangle(10, 5, 20, 8);
+    drawCircle(50, 12, 6);
+
+    displayPicture();
+
+    return 0;
+}
+
+------------------------------------------------------------
+6. EXPLANATION OF FUNCTIONS
+------------------------------------------------------------
+
+clearPicture():
+This function clears the canvas by filling all positions with the EMPTY character '_'.
+
+displayPicture():
+This function prints the entire canvas row by row.
+
+setPixel():
+This function places a '*' at the given x and y coordinate only if the coordinate is valid.
+
+drawLine():
+This function draws a line between two points. It can be implemented using Bresenham's line algorithm or another suitable line drawing method.
+
+drawRectangle():
+This function draws four sides of a rectangle by using the drawLine() function.
+
+drawCircle():
+This function draws an approximate circle by checking points around the center and placing pixels at correct positions.
+
+------------------------------------------------------------
+7. VS CODE AND GITHUB WORKFLOW
+------------------------------------------------------------
+
+The project should be completed in Visual Studio Code and uploaded to GitHub.
+
+Steps followed:
+
+1. Opened the project folder in VS Code.
+2. Created or edited the C source file.
+3. Saved the file.
+4. Opened Source Control in VS Code.
+5. Staged the changed files.
+6. Added a proper commit message.
+7. Committed the changes.
+8. Pushed the commit to GitHub.
+
+Terminal commands:
+
+git add .
+git commit -m "Completed 2D Graphics Editor project"
+git push
+
+------------------------------------------------------------
+8. COMMIT MESSAGE USED
+------------------------------------------------------------
+
+Completed 2D Graphics Editor project
+
+Other possible commit messages:
+
+- Added clear picture and display functions
+- Added pixel drawing function
+- Added line, rectangle, and circle drawing logic
+- Finalized 2D graphics editor project
+
+------------------------------------------------------------
+9. FINAL CHECKLIST
+------------------------------------------------------------
+
+Before submitting the project, check the following:
+
+[ ] Code opens properly in VS Code
+[ ] Program compiles without errors
+[ ] Output is displayed correctly
+[ ] All TODO functions are completed
+[ ] File is committed in Git
+[ ] Changes are pushed to GitHub
+[ ] GitHub repository shows the latest code
+[ ] README or prompt file is included if required
+[ ] Screenshot of VS Code and GitHub can be shown to faculty
+
+------------------------------------------------------------
+10. CONCLUSION
+------------------------------------------------------------
+
+This project demonstrates the use of C programming concepts to build a simple text-based 2D Graphics Editor. The project uses arrays, functions, loops, and coordinate-based drawing logic. It was completed using Visual Studio Code and committed to GitHub as required by the faculty.
